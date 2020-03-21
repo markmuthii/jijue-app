@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Patient Chats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      *ngFor="let patient of patients"
+      (click)="navigateToChatPage(patient._id)"
+    >
+      <ion-label>{{ patient.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

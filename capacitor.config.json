@@ -1,0 +1,8 @@
+{
+  "appId": "com.jijue.app",
+  "appName": "Jijue",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
