@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Add a Kit</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="showMenuPopover(this.$event)">
+        <ion-icon
+          slot="icon-only"
+          ios="ellipsis-horizontal"
+          md="ellipsis-vertical"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <app-addkit-slide></app-addkit-slide>
 </ion-content>

@@ -1,68 +1,75 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding ion-text-center">
+  <h1>New here?</h1>
+  <p>Create an account to continue.</p>
+  <form class="registration-form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" for="name">Name</ion-label>
+        <ion-input
+          [(ngModel)]="userData.name"
+          name="name"
+          type="text"
+        ></ion-input>
+      </ion-item>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating" for="name">Name</ion-label>
-      <ion-input
-        [(ngModel)]="userData.name"
-        name="name"
-        type="text"
-      ></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating" for="email">Email</ion-label>
+        <ion-input
+          [(ngModel)]="userData.email"
+          name="email"
+          type="email"
+        ></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating" for="email">Email</ion-label>
-      <ion-input
-        [(ngModel)]="userData.email"
-        name="email"
-        type="email"
-      ></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating" for="phone">Phone</ion-label>
+        <ion-input
+          [(ngModel)]="userData.phone"
+          name="phone"
+          type="tel"
+        ></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating" for="phone">Phone</ion-label>
-      <ion-input
-        [(ngModel)]="userData.phone"
-        name="phone"
-        type="tel"
-      ></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating" for="password">Password</ion-label>
+        <ion-input
+          [(ngModel)]="userData.password"
+          name="password"
+          type="password"
+        ></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating" for="password">Password</ion-label>
-      <ion-input
-        [(ngModel)]="userData.password"
-        name="password"
-        type="password"
-      ></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating" for="gender">Gender</ion-label>
+        <ion-select
+          [(ngModel)]="userData.gender"
+          placeholder="Select One"
+          name="gender"
+        >
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating" for="gender">Gender</ion-label>
-      <ion-select [(ngModel)]="userData.gender" placeholder="Select One">
-        <ion-select-option value="f">Female</ion-select-option>
-        <ion-select-option value="m">Male</ion-select-option>
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating" for="age">Age</ion-label>
+        <ion-input
+          [(ngModel)]="userData.age"
+          name="age"
+          type="number"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
 
-    <ion-item>
-      <ion-label position="floating" for="age">Age</ion-label>
-      <ion-input
-        [(ngModel)]="userData.age"
-        name="age"
-        type="number"
-      ></ion-input>
-    </ion-item>
-  </ion-list>
+    <ion-button
+      class="form-btn-submit"
+      expand="block"
+      shape="round"
+      (click)="registerAction()"
+      [disabled]="isRunning"
+      >{{ btnText }}</ion-button
+    >
 
-  <ion-button expand="block" shape="round" (click)="registerAction()"
-    >Register</ion-button
-  >
-
-  <div>Already have an account? <a [routerLink]="['/login']">Log In</a></div>
+    <div>Already have an account? <a [routerLink]="['/login']">Log In</a></div>
+  </form>
 </ion-content>

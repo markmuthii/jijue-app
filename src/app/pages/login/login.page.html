@@ -1,11 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <form>
+<ion-content class="ion-padding ion-text-center login-page">
+  <h1>Welcome back!</h1>
+  <p>Please login to continue.</p>
+  <form class="login-form">
     <ion-list>
       <ion-item>
         <ion-label position="floating" for="email">Email</ion-label>
@@ -28,10 +24,17 @@
       </ion-item>
     </ion-list>
 
-    <ion-button expand="block" shape="round" (click)="loginAction()"
-      >Log In</ion-button
+    <ion-button
+      class="form-btn-submit"
+      expand="block"
+      shape="round"
+      (click)="loginAction()"
+      [disabled]="isRunning"
+      >{{ btnText }}</ion-button
     >
-  </form>
 
-  <div>Don't have an account? <a [routerLink]="['/register']">Register</a></div>
+    <div>
+      Don't have an account? <a [routerLink]="['/register']">Register</a>
+    </div>
+  </form>
 </ion-content>

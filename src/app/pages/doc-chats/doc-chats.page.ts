@@ -1,8 +1,11 @@
+import { MenuPopoverComponent } from './../../components/menu-popover/menu-popover.component';
 import { UsersService } from './../../services/users.service';
 import { AuthConstantsService } from './../../config/auth-constants.service';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ModalController, PopoverController } from '@ionic/angular';
+import { ChatPage } from '../chat/chat.page';
 
 @Component({
   selector: 'app-doc-chats',
@@ -16,7 +19,9 @@ export class DocChatsPage implements OnInit {
     private usersService: UsersService,
     private authConstants: AuthConstantsService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController,
+    private popoverController: PopoverController
   ) {}
 
   async ngOnInit() {
@@ -27,19 +32,32 @@ export class DocChatsPage implements OnInit {
         this.userId = userData.id;
       });
 
-    this.usersService.getDoctorsPatients(this.userId).subscribe((data: any) => {
+    this.usersService.getRelatedUsers(this.userId).subscribe((data: any) => {
       console.log(data);
       this.patients = data.data;
     });
   }
 
-  navigateToChatPage(patientId: string) {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        patientId
+  async openChatModal(patientId: string) {
+    const chatModal = await this.modalController.create({
+      component: ChatPage,
+      componentProps: {
+        patientId,
+        userRole: 'doctor',
+        userId: this.userId
       }
-    };
+    });
 
-    this.router.navigate(['home/chat'], navigationExtras);
+    return await chatModal.present();
+  }
+
+  async showMenuPopover(event: any) {
+    const popover = await this.popoverController.create({
+      component: MenuPopoverComponent,
+      event,
+      translucent: true
+    });
+
+    return await popover.present();
   }
 }

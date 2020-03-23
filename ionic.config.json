@@ -1,7 +1,8 @@
 {
   "name": "jijue-app",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

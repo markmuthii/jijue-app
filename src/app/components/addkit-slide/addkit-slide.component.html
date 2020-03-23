@@ -1,73 +1,111 @@
-<ion-slides [options]="slideOpts" fullscreen>
+<ion-slides [options]="slideOpts" (ionSlideDidChange)="checkStartEnd()" #slider>
   <ion-slide>
-    <h1>Enter Kit Serial Number</h1>
-    <ion-list>
+    <h1>Enter Kit Information</h1>
+    <form class="add-kit-form">
+      <ion-list>
+        <ion-item>
+          <ion-label for="serial" position="floating"
+            >Kit Serial Number</ion-label
+          >
+          <ion-input
+            name="serial"
+            type="text"
+            [(ngModel)]="kitData.serial"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+
       <ion-item>
-        <ion-label for="serial" position="floating">Serial Number</ion-label>
-        <ion-input
-          name="serial"
-          type="text"
-          [(ngModel)]="kitData.serial"
-        ></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-item>
-      <ion-label for="type" position="floating">Kit Type</ion-label>
-      <ion-select
-        name="type"
-        placeholder="Select Type"
-        [(ngModel)]="kitData.kitType"
-      >
-        <ion-select-option value="single">Single Test</ion-select-option>
-        <ion-select-option value="multi">Multi Test</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-slide>
-
-  <ion-slide>
-    <h1>Disease Test</h1>
-    <ion-list>
-      <ion-item *ngIf="kitData.kitType == 'single' || kitData.kitType == ''">
         <ion-label for="type" position="floating">Kit Type</ion-label>
         <ion-select
           name="type"
           placeholder="Select Type"
-          [(ngModel)]="kitData.disease"
+          [(ngModel)]="kitData.kitType"
         >
-          <ion-select-option value="HIV">HIV</ion-select-option>
-          <ion-select-option value="Hepatitis B">Hepatitis B</ion-select-option>
-          <ion-select-option value="Chlamydia">Chlamydia</ion-select-option>
-          <ion-select-option value="Gonorrhoea">Gonorrhoea</ion-select-option>
-          <ion-select-option value="Malaria">Malaria</ion-select-option>
+          <ion-select-option value="single">Single Test</ion-select-option>
+          <ion-select-option value="multi">Multi Test</ion-select-option>
         </ion-select>
       </ion-item>
+    </form>
+  </ion-slide>
 
-      <ion-item *ngIf="kitData.kitType == 'multi'">
-        <ion-label>HIV, Hepatitis B, Chlamydia, Gonorrhoea, Malaria</ion-label>
-        <ion-checkbox name="disease" slot="start" checked></ion-checkbox>
-      </ion-item>
-    </ion-list>
+  <ion-slide>
+    <h1>Disease Tested</h1>
+    <form class="add-kit-form">
+      <ion-list>
+        <ion-item *ngIf="kitData.kitType == 'single' || kitData.kitType == ''">
+          <ion-label for="type" position="floating">Disease Tested</ion-label>
+          <ion-select
+            name="disease"
+            placeholder="Select Type"
+            [(ngModel)]="kitData.disease"
+          >
+            <ion-select-option value="HIV">HIV</ion-select-option>
+            <ion-select-option value="Hepatitis B"
+              >Hepatitis B</ion-select-option
+            >
+            <ion-select-option value="Chlamydia">Chlamydia</ion-select-option>
+            <ion-select-option value="Gonorrhoea">Gonorrhoea</ion-select-option>
+            <ion-select-option value="Malaria">Malaria</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="kitData.kitType == 'multi'">
+          <ion-label
+            >HIV, Hepatitis B, Chlamydia, Gonorrhoea, Malaria</ion-label
+          >
+          <ion-checkbox name="disease" slot="start" checked></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </form>
   </ion-slide>
 
   <ion-slide>
     <h1>Test Result</h1>
-    <ion-list>
-      <ion-radio-group value="negative" [(ngModel)]="kitData.results">
-        <ion-item>
-          <ion-label>Negative</ion-label>
-          <ion-radio slot="start" color="success" value="negative"></ion-radio>
-        </ion-item>
+    <form class="add-kit-form">
+      <ion-list>
+        <ion-radio-group
+          value="negative"
+          [(ngModel)]="kitData.results"
+          name="result"
+        >
+          <ion-item>
+            <ion-label>Negative</ion-label>
+            <ion-radio
+              slot="start"
+              color="success"
+              value="negative"
+            ></ion-radio>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Positive</ion-label>
-          <ion-radio slot="start" color="tertiary" value="positive"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list>
+          <ion-item>
+            <ion-label>Positive</ion-label>
+            <ion-radio
+              slot="start"
+              color="tertiary"
+              value="positive"
+            ></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
 
-    <ion-button expand="block" shape="round" (click)="submitKit()"
-      >Confirm Kit</ion-button
-    >
+      <ion-button
+        class="form-btn-submit"
+        expand="block"
+        shape="round"
+        (click)="submitKit()"
+        [disabled]="isRunning"
+        >{{ btnText }}</ion-button
+      >
+    </form>
   </ion-slide>
 </ion-slides>
+
+<div class="slide-buttons">
+  <ion-button *ngIf="!isFirstSlide" shape="round" (click)="previousSlide()"
+    >Previous</ion-button
+  >
+  <ion-button *ngIf="!isLastSlide" shape="round" (click)="nextSlide()"
+    >Next</ion-button
+  >
+</div>

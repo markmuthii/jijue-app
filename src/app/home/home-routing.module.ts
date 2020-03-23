@@ -1,3 +1,4 @@
+import { HomeGuard } from './../guards/home.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,6 +8,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomePage,
+    canActivate: [HomeGuard],
     children: [
       {
         path: '',
@@ -19,34 +21,10 @@ const routes: Routes = [
           import('../pages/addkit/addkit.module').then(m => m.AddkitPageModule)
       },
       {
-        path: 'negative',
+        path: 'chats',
         loadChildren: () =>
-          import('../pages/negative/negative.module').then(
-            m => m.NegativePageModule
-          )
-      },
-      {
-        path: 'chat',
-        loadChildren: () =>
-          import('../pages/chat/chat.module').then(m => m.ChatPageModule)
-      },
-      {
-        path: 'chat/:patientId',
-        loadChildren: () =>
-          import('../pages/chat/chat.module').then(m => m.ChatPageModule)
-      },
-      {
-        path: 'doc/chats',
-        loadChildren: () =>
-          import('../pages/doc-chats/doc-chats.module').then(
-            m => m.DocChatsPageModule
-          )
-      },
-      {
-        path: 'doc/chat',
-        loadChildren: () =>
-          import('../pages/doc-chat/doc-chat.module').then(
-            m => m.DocChatPageModule
+          import('../pages/patient-chats/patient-chats.module').then(
+            m => m.PatientChatsPageModule
           )
       }
     ]

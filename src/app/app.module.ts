@@ -1,3 +1,6 @@
+import { NegativePageModule } from './pages/negative/negative.module';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { MenuPopoverComponent } from './components/menu-popover/menu-popover.component';
 import { environment } from './../environments/environment.prod';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,16 +16,21 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+import { ChatPageModule } from './pages/chat/chat.module';
+
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents: [MenuPopoverComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    ChatPageModule,
+    NegativePageModule,
+    ComponentsModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [

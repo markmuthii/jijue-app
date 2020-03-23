@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Doctors</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="showMenuPopover(this.$event)">
+        <ion-icon
+          slot="icon-only"
+          ios="ellipsis-horizontal"
+          md="ellipsis-vertical"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="chat-list-card" *ngIf="doctor">
+    <ion-item lines="none">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>{{ doctor.name }}</ion-label>
+      <ion-button fill="outline" slot="end" (click)="openChatModal(doctor._id)"
+        >Chat</ion-button
+      >
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="chat-list-card" *ngIf="!doctor">
+    <ion-item lines="none">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-skeleton-text></ion-skeleton-text>
+      <ion-skeleton-text></ion-skeleton-text>
+    </ion-item>
+  </ion-card>
+</ion-content>

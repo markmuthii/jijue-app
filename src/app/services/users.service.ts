@@ -11,7 +11,7 @@ export class UsersService {
     return this.httpService.get('users/role/doctor');
   }
 
-  getDoctorsPatients(doctorId: string) {
+  getRelatedUsers(doctorId: string) {
     console.log('Users service ', doctorId);
     return this.httpService.get(`users/patients/${doctorId}`);
   }

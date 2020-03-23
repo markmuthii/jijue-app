@@ -5,13 +5,13 @@ import { DocChatsPage } from './doc-chats.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'doc',
     component: DocChatsPage
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class DocChatsPageRoutingModule {}

@@ -11,7 +11,9 @@ export class KitsService {
     return this.httpService.post('kits', data);
   }
 
-  getKitsByUserId(userId: any) {}
+  getKitsByUserId(userId: any) {
+    return this.httpService.get(`kits/${userId}`);
+  }
 
   getAllKits() {}
 }

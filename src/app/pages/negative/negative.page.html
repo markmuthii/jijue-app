@@ -1,9 +1,68 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>negative</ion-title>
+    <ion-icon
+      slot="end"
+      name="close-outline"
+      (click)="closeChatModal()"
+    ></ion-icon>
+    <ion-title>Prevention</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-card>
+    <img src="assets/images/prevention.jpg" />
+    <ion-card-header>
+      <ion-card-subtitle
+        >Keep yourself and the ones you love safe.</ion-card-subtitle
+      >
+      <ion-card-title>Disease Prevention</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      To protect yourself from contracting HIV: <br />
+      <ul>
+        <li>Abstain from having multiple sex partners.</li>
+        <li>Use condoms during sex.</li>
+        <li>Do not share cutting tools; nailcutters, razors, needles.</li>
+      </ul>
+      <br />
+      To protect yourself from contracting Chlamydia/Gonorrhea:
+      <ul>
+        <li>
+          Use condoms. Use a male latex condom or a female polyurethine condom
+          during sexual contact.
+        </li>
+        <li>
+          Limit your numbers of sex partners; having multiple sex partners puts
+          you at a high risk.
+        </li>
+        <li>Test yourself regularly.</li>
+        <li>Refrain from oral or anal sex.</li>
+      </ul>
+      <br />
+      To protect yourself from contracting Hepatitis B:
+      <ul>
+        <li>Get the Hepatitis B vaccine.</li>
+        <li>Use condoms during sex.</li>
+        <li>Avoid sharing of needles and other cutting tools.</li>
+      </ul>
+      <br />
+      To protect yourself from contracting Malaria:
+      <ul>
+        <li>Use a treated mosquito net.</li>
+        <li>Pour off and clear any water that may stagnate.</li>
+        <li>Clear bushes near the homestead.</li>
+        <li>Make use of mosquito repellants.</li>
+      </ul>
+      <br />
+    </ion-card-content>
+  </ion-card>
 
+  <ion-button
+    class="mt-20"
+    expand="block"
+    shape="round"
+    (click)="closeChatModal()"
+    >Got it</ion-button
+  >
 </ion-content>
